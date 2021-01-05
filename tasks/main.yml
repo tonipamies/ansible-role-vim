@@ -1,0 +1,223 @@
+# file: roles/vim/tasks/main.yml
+# author: Antoni Pàmies <toni@arboli.net>
+#
+---
+#
+# Asserts
+#
+- name: INCLUDE PREASSERTS | Include PreAsserts
+  include: preasserts.yml
+  tags:
+    - always
+
+#
+# Include distribution dependent variables
+#
+- name: INCLUDE VARS | Include distribution dependent variables
+  include_vars: "{{ item }}"
+  with_first_found:
+    - files:
+        - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
+        - "{{ ansible_os_family }}-{{ ansible_distribution_major_version }}.yml"
+        - "{{ ansible_distribution }}.yml"
+        - "{{ ansible_os_family }}.yml"
+      paths:
+        - roles/vim/vars/
+        - ../vars/
+      skip: true
+  tags:
+    - always
+
+#
+# Asserts
+#
+- name: INCLUDE ASSERTS | Include Asserts
+  include: asserts.yml
+  tags:
+    - always
+
+#
+# Install vim base packages
+#
+- name: INSTALL_PKG | Install Git and vim Base Packages | WARNING! This task can take several minutes
+  package:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ vim_packages }}"
+  tags:
+    - install
+
+#
+# Add vimrc.local to master vimrc
+#
+- name: MODIFY_FILE | Modification of file vimrc to add vimrc.local
+  blockinfile:
+    path: /etc/vimrc
+    marker: '" {mark} ANSIBLE MANAGED BLOCK -----+'
+    backup: "{{ backup_config_files }}"
+    block: |
+      "
+      " Source a global configuration file if available
+      "
+      if filereadable("/etc/vim/vimrc.local")
+        source /etc/vim/vimrc.local
+      endif
+  when:
+    - ansible_os_family == 'RedHat'
+  tags:
+    - install
+    - configure
+
+#
+# Ensure that /etc/vim directory exists
+#
+- name: CREATE_DIR | Ensure /etc/vim directory exists
+  file:
+    path: "/etc/vim"
+    state: directory
+    recurse: no
+    mode: 0755
+    owner: root
+    group: root
+  when:
+    - ansible_os_family == 'RedHat'
+  tags:
+    - install
+    - configure
+
+#
+# Create vimrc.local file
+#
+- name: TEMPLATE | Create vimrc.local file
+  template:
+    src: etc/vim/vimrc.local.j2
+    dest: /etc/vim/vimrc.local
+    mode: 0644
+    backup: "{{ backup_config_files }}"
+    owner: root
+    group: root
+  tags:
+    - install
+    - configure
+
+#
+# Create airline.vim file
+#
+- name: TEMPLATE | Create airline.vim file
+  template:
+    src: etc/vim/airline.vim.j2
+    dest: /etc/vim/airline.vim
+    mode: 0644
+    backup: "{{ backup_config_files }}"
+    owner: root
+    group: root
+  tags:
+    - install
+    - configure
+
+#
+# Create pathogen.vim file
+#
+- name: TEMPLATE | Create pathogen.vim file
+  template:
+    src: etc/vim/pathogen.vim.j2
+    dest: /etc/vim/pathogen.vim
+    mode: 0644
+    backup: "{{ backup_config_files }}"
+    owner: root
+    group: root
+  tags:
+    - install
+    - configure
+
+#
+# Ensure that bundle directory exists
+#
+- name: "CREATE_DIR | Ensure {{ pathogen_dir }}/bundle directory exists"
+  file:
+    path: "{{ pathogen_dir }}/bundle"
+    state: directory
+    recurse: no
+    mode: 0755
+    owner: root
+    group: root
+  tags:
+    - install
+    - configure
+
+#
+# Deploying plugins from Git
+#
+- name: INSTALL_PLUGINS | Deploying vim plugins from Git
+  git:
+    dest: "{{ pathogen_dir }}/bundle/{{ item.name }}"
+    repo: "{{ item.url }}"
+    clone: yes
+    update: yes
+    recursive: no
+  loop: "{{ pathogen_plugins }}"
+  when:
+    - pathogen_dir is defined
+    - item.enabled
+  tags:
+    - install
+    - configure
+    - skip_ansible_lint
+
+#
+# Create individual plugin configuration file
+#
+- name: TEMPLATE | Create individual plugin configuration file
+  template:
+    src: "etc/vim/{{ item.name }}.vim.j2"
+    dest: /etc/vim/{{ item.name }}.vim
+    mode: 0644
+    backup: "{{ backup_config_files }}"
+    owner: root
+    group: root
+  loop: "{{ pathogen_plugins }}"
+  when:
+    - pathogen_dir is defined
+    - item.enabled
+  tags:
+    - install
+    - configure
+
+#
+# Deploying custom plugins from Git
+#
+- name: INSTALL_PLUGINS | Deploying vim cumtom plugins from Git
+  git:
+    dest: "{{ pathogen_dir }}/bundle/{{ item.name }}"
+    repo: "{{ item.url }}"
+    clone: yes
+    update: yes
+    recursive: no
+  loop: "{{ custom_pathogen_plugins }}"
+  when:
+    - pathogen_dir is defined
+    - item.enabled
+  tags:
+    - install
+    - configure
+    - skip_ansible_lint
+
+#
+# Create individual custom plugin configuration file
+#
+- name: TEMPLATE | Create individual custom plugin configuration file
+  template:
+    src: "{{ item.config_file }}"
+    dest: /etc/vim/{{ item.name }}.vim
+    mode: 0644
+    backup: "{{ backup_config_files }}"
+    owner: root
+    group: root
+  loop: "{{ custom_pathogen_plugins }}"
+  when:
+    - pathogen_dir is defined
+    - item.enabled
+    - item.config_file is defined
+  tags:
+    - install
+    - configure

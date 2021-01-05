@@ -1,0 +1,16 @@
+{{ ansible_managed | comment(decoration='" ') }}
+"
+" Pathogen Configuration
+" https://github.com/tpope/vim-pathogen
+"
+{% if pathogen_dir is defined %}
+"
+" locate for plugins in: ~/.vim/bundle/ and {{ pathogen_dir }}/bundle/
+"
+execute pathogen#infect('~/.vim/bundle/{}', '{{ pathogen_dir }}/bundle/{}')
+{% else %}
+"
+" locate for plugins in default directory
+"
+execute pathogen#infect()
+{% endif %}

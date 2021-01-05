@@ -1,0 +1,25 @@
+---
+- name: Prepare
+  hosts: all
+  gather_facts: false
+  become_user: root
+  remote_user: root
+  become: true
+  tasks:
+    #
+    # Check for python
+    #
+    - name: Check for Python
+      raw: test -e /usr/bin/python || test -e /usr/bin/python3
+      changed_when: false
+      failed_when: false
+      register: check_python
+
+    - name: Install Python
+      raw: >
+        (test -e /usr/bin/apt-get && (apt-get -y update && apt-get install -y python3-minimal python3-apt)) ||
+        (test -e /usr/bin/apt-get && (apt-get -y update && apt-get install -y python-minimal2)) ||
+        (test -e /usr/bin/apt-get && (apt-get -y update && apt-get install -y python-minimal )) ||
+        (yum -y install python3 python3-libselinux)
+      when:
+        - check_python.rc != 0

@@ -1,0 +1,175 @@
+{{ ansible_managed | comment(decoration='" ') }}
+" This file loads the default vim options at the beginning and prevents
+" that they are being loaded again later. All other options that will be set,
+" are added, or overwrite the default settings. Add as many options as you
+" whish at the end of this file.
+
+" Load the defaults
+source $VIMRUNTIME/defaults.vim
+
+" Prevent the defaults from being loaded again later, if the user doesn't
+" have a local vimrc (~/.vimrc)
+let skip_defaults_vim = 1
+
+
+" Set more options (overwrites settings from /usr/share/vim/vim80/defaults.vim)
+" Add as many options as you whish
+
+" Set the mouse mode to 'r'
+if has('mouse')
+  set mouse=r
+endif
+
+"
+" Copy indent from current line when starting a new line (typing <CR> in Insert
+" mode or when using the "o" or "O" command).  If you do not type anything on
+" the new line except <BS> or CTRL-D and then type <Esc>, CTRL-O or <CR>, the
+" indent is deleted again.  Moving the cursor to another line has the same effect,
+" unless the 'I' flag is included in 'cpoptions'.
+"
+set noai
+"
+" Put Vim in Paste mode.  This is useful if you want to cut or copy some text
+" from one window and paste it in Vim. This will avoid unexpected effects.
+"
+set paste
+"
+" Print the line number in front of each line.  When the 'n' option is excluded
+" from 'cpoptions' a wrapped line will not use the column of line numbers (this
+" is the default when 'compatible' isn't set).
+" The 'numberwidth' option can be used to set the room used for the line number.
+"
+set nu
+"
+" When a bracket is inserted, briefly jump to the matching one.
+" Thejump is only done if the match can be seen on the screen.
+" The time to show the match can be set with 'matchtime'
+"
+set sm
+"
+" Searches wrap around the end of the file.  Also applies to |]s| and |[s|,
+" searching for spelling mistakes.
+"
+set ws
+"
+" When this option is set, the syntax with this name is loaded, unless syntax
+" highlighting has been switched off with ":syntax off". Otherwise this option
+" does not always reflect the current syntax (the b:current_syntax variable does).
+"
+syntax on
+"
+" It turns on "detection", "plugin" and "indent" at once. You can check for
+" yourself by reading :help :filetype-overview.
+" Each time a new or existing file is edited, Vim will try to recognize the type
+" of the file and set the 'filetype' option. This will trigger the FileType event,
+" which can be used to set the syntax highlighting, set options, etc.
+"
+filetype on
+filetype plugin on
+filetype indent on
+"
+"   '50  Marks will be remembered for the last 50 files you edited.
+"   "50  Don't store more than 50 lines of registers
+" <1000  Contents of registers (up to 1000 lines each) will be remembered.
+"    :0  Command-line history will not be saved.
+"  s100  Registers with more than 100 Kbyte text are skipped.
+"
+set viminfo='50,\"50,<1000,:0,s100
+"
+" Keep 150 lines of command line history
+"
+set history=150
+"
+" show the cursor position all the time
+"
+set ruler
+"
+" Set file encodings
+"
+if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
+   set fileencodings=ucs-bom,utf-8,latin1
+endif
+"
+" Set tab options
+"
+" On pressing tab, insert 2 spaces
+set expandtab
+" show existing tab with 2 spaces width
+set tabstop=2
+set softtabstop=2
+" when indenting with '>> << ==', use 2 spaces width
+set shiftwidth=2
+"
+" Only do this part when compiled with support for autocommands
+"
+if has("autocmd")
+  augroup voz
+  autocmd!
+  "
+  " In text files, always limit the width of text to 78 characters
+  "
+  autocmd BufRead *.txt set tw=78
+  "
+  " When editing a file, always jump to the last cursor position
+  "
+  autocmd BufReadPost *
+  \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+  \   exe "normal! g'\"" |
+  \ endif
+  "
+  " don't write swapfile on most commonly used directories for NFS mounts or USB sticks
+  "
+  autocmd BufNewFile,BufReadPre /media/*,/run/media/*,/mnt/* set directory=~/tmp,/var/tmp,/tmp
+  "
+  " Change tab settings for Filetype
+  "
+  autocmd FileType html setlocal shiftwidth=2 softtabstop=2 tabstop=2
+  autocmd FileType python setlocal shiftwidth=4 softtabstop=4 tabstop=4
+  autocmd FileType php setlocal shiftwidth=4 softtabstop=4 tabstop=4
+  autocmd FileType c setlocal shiftwidth=4 softtabstop=4 tabstop=4
+  augroup END
+endif
+{% if color is defined %}
+"
+" Set color to {{ color }}
+"
+colo {{ color }}
+{% endif %}
+"
+" Include configuration file for pathogen
+"
+if filereadable("/etc/vim/pathogen.vim")
+  source /etc/vim/pathogen.vim
+endif
+"
+" Include configuration file for Airline
+"
+if filereadable("/etc/vim/airline.vim")
+  source /etc/vim/airline.vim
+endif
+
+{% if pathogen_dir is defined and pathogen_plugins is defined %}
+{% for i in pathogen_plugins %}
+{% if i.enabled is defined and i.enabled %}
+"
+" Include configuration file for {{ i.name }}
+"
+if filereadable("/etc/vim/{{ i.name }}.vim")
+  source /etc/vim/{{ i.name }}.vim
+endif
+{% endif %}
+{% endfor %}
+{% endif %}
+
+{% if pathogen_dir is defined and custom_pathogen_plugins is defined %}
+{% for i in custom_pathogen_plugins %}
+{% if i.enabled is defined and i.enabled and i.config_file is defined %}
+"
+" Include configuration file for {{ i.name }}
+"
+if filereadable("/etc/vim/{{ i.name }}.vim")
+  source /etc/vim/{{ i.name }}.vim
+endif
+{% endif %}
+{% endfor %}
+{% endif %}

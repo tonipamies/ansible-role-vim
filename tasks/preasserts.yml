@@ -1,0 +1,92 @@
+# file: roles/vim/tasks/asserts.yml
+# author: Antoni Pàmies <toni@arboli.net>
+#
+---
+#
+# Check Ansible Version, Distribution and Distribution version
+#
+- name: "CHECK DIST | Block that checks Ansible version, distribution and distribution version is compatible with the role"
+  block:
+    #
+    # Check Ansible Version
+    #
+    - name: "CHECK ANSIBLE | Checks if ansible version is compatible with the role"
+      fail:
+        msg: >
+          You need an Ansible version higher or equal than {{ valid_ansible_version }}
+
+          Your Ansible version is {{ ansible_version.full }}
+      when:
+        - ansible_version.full is version( valid_ansible_version , '<' )
+
+    #
+    # Check Distribution
+    #
+    - name: "CHECK DIST | Checks if Distribution is compatible with the role"
+      assert:
+        that:
+          - valid_distributions
+              | selectattr( 'name', 'equalto', ansible_distribution )
+              | list
+              | count > 0
+        quiet: yes
+        fail_msg: >
+          This role is only fully tested with the following distributions
+
+
+          {{ valid_distributions
+               | map( attribute='name' )
+               | list
+               | to_nice_yaml }}
+          If you want to test your your distribution '{{ ansible_distribution }}', do it at your own risk.
+
+          Need to add your distribution on variable 'valid_distributions' on task 'CHECK DIST' in file 'tasks/asserts.yml'
+
+    #
+    # Check Version Distribution
+    #
+    - name: "CHECK DIST | Checks if Version distribution is compatible with the role"
+      assert:
+        that:
+          - ansible_distribution_major_version in
+            valid_distributions
+              | selectattr( 'name', 'equalto', ansible_distribution )
+              | map( attribute = 'versions' )
+              | list
+              | first
+        quiet: yes
+        fail_msg: >
+          This role is only fully tested with the following versions of distribution {{ ansible_distribution }}
+
+
+          {{ valid_distributions
+               | selectattr( 'name', 'equalto', ansible_distribution )
+               | map( attribute = 'versions' )
+               | list
+               | first
+               | to_nice_yaml }}
+          If you want to test on your version '{{ ansible_distribution_major_version }}', do it at your own risk.
+
+          Need to add your version distribution on variable 'valid_distributions' on task 'CHECK DIST' in file 'tasks/asserts.yml'
+  vars:
+    valid_ansible_version: 2.9
+    valid_distributions:
+      - name: "Fedora"
+        versions:
+          - "31"
+          - "32"
+          - "33"
+          - "34"
+      - name: "Ubuntu"
+        versions:
+          - "18"
+          - "20"
+          - "21"
+      - name: "Debian"
+        versions:
+          - "8"
+          - "10"
+          - "testing"
+      - name: "CentOS"
+        versions:
+          - "8"

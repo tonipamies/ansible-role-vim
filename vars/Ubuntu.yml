@@ -1,0 +1,38 @@
+# file: roles/vim/vars/Ubuntu.yml
+# author: Antoni Pàmies <toni@arboli.net>
+#
+---
+#
+# List of Packages
+#
+vim_packages:
+  - git
+  - vim
+  - fonts-powerline
+  - powerline
+  - vim-pathogen
+  - vim-addon-manager
+  - vim-airline
+  - vim-airline-themes
+  - vim-fugitive
+  - vim-nox
+
+#
+# Pathogen Plugins
+#
+pathogen_plugins:
+  - name: vim-colors-solarized
+    url: 'https://github.com/altercation/vim-colors-solarized'
+    enabled: false
+  - name: nerdtree
+    url: 'https://github.com/preservim/nerdtree'
+    enabled: true
+  - name: vim-gitgutter
+    url: 'https://github.com/airblade/vim-gitgutter'
+    enabled: true
+  - name: vim-floaterm
+    url: 'https://github.com/voldikss/vim-floaterm'
+    enabled: true
+  - name: vim-jinja2-syntax
+    url: 'https://github.com/Glench/Vim-Jinja2-Syntax'
+    enabled: true

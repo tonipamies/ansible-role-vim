@@ -1,0 +1,21 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+platforms:
+  - name: instance-${MOLECULE_INSTANCE_NAME}
+    image: docker.io/${MOLECULE_DISTRO}
+    pre_build_image: True
+provisioner:
+  name: ansible
+  log: True
+  options:
+    vvv: True
+verifier:
+  name: ansible
+lint: |
+  set -e
+  yamllint .
+  ansible-lint
+  flake8

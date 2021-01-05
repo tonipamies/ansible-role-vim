@@ -1,0 +1,16 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "INCLUDE ROLE | Install Vim Packages & Configure it"
+      include_role:
+        name: "vim"
+      vars:
+        - backup_config_files: true
+        - color: ron
+        - airline_theme: vice
+        - custom_pathogen_plugins:
+          - name: nerdcommenter
+            url: 'https://github.com/preservim/nerdcommenter'
+            enabled: true
+            config_file: 'molecule/default/templates/etc/vim/nerdcommenter.vim.j2'

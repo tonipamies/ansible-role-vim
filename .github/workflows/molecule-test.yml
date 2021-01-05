@@ -1,0 +1,64 @@
+#
+# Molecule Test
+#
+name: Molecule Test
+on:
+  push:
+    branches: [ main ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix:
+        molecule_distro:
+          - name: 'centos:8'
+            instance: 'Centos-8'
+          - name: 'debian:buster'
+            instance: 'Debian-Buster'
+          - name: 'debian:bullseye'
+            instance: 'Debian-Bullseye'
+          - name: 'ubuntu:bionic'
+            instance: 'Ubuntu-Bionic'
+          - name: 'ubuntu:focal'
+            instance: 'Ubuntu-Focal'
+          - name: 'ubuntu:groovy'
+            instance: 'Ubuntu-Groovy'
+          - name: 'fedora:31'
+            instance: 'Fedora-31'
+          - name: 'fedora:32'
+            instance: 'Fedora-32'
+          - name: 'fedora:33'
+            instance: 'Fedora-33'
+          - name: 'fedora:34'
+            instance: 'Fedora-34'
+    env:
+      ROLE_NAME: vim
+      MOLECULE_DEBUG: true
+      ANSIBLE_CALLBACK_WHITELIST: profile_tasks
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python 3
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - name: Install required packages
+        run: |
+          python -m pip install --upgrade pip
+          pip install molecule docker molecule-docker ansible-lint ansible flake8
+      - name:  Log Docker, Ansible, Ansible-lint and Molecule version
+        run: |
+          docker --version
+          ansible --version
+          molecule --version
+          ansible-lint --version
+      - name: Test with Molecule
+        run: |
+          cd ..
+          ln -sf ${GITHUB_WORKSPACE} ${ROLE_NAME}
+          cd ${ROLE_NAME}
+          molecule test
+        env:
+          MOLECULE_DISTRO: ${{ matrix.molecule_distro.name }}
+          MOLECULE_INSTANCE_NAME: ${{ matrix.molecule_distro.instance }}

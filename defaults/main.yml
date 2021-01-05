@@ -1,0 +1,52 @@
+# file: roles/vim/defaults/main.yml
+# author: Antoni Pàmies <toni@arboli.net>
+#
+---
+#
+# Default definitions
+#
+vim_packages: []
+#
+# Directory for Pathogen addons
+#
+pathogen_dir: /usr/share/vim/addons
+#
+# Default colorscheme
+#
+# blue, darkblue, default, delek, desert, elflord, evening, industry, koehler,
+# morning, murphy, pablo, peachpuff, ron, shine, slate, torte
+#
+color: darkblue
+#
+# Default Airline Theme
+#
+# alduin, angr, atomic, aurora, ayu_mirage, badcat, badwolf, base16,
+# base16_3024, base16_apathy, base16_ashes, base16_atelierdune,
+# base16_atelierforest, base16_atelierheath, base16_atelierlakeside
+# base16_atelierseaside, base16_bespin, base16_brewer, base16_bright,
+# base16_chalk, base16_classic, base16_codeschool, base16_colors,
+# base16_default, base16_eighties, base16_embers, base16_flat,
+# base16_google, base16_grayscale, base16_greenscreen, base16_harmonic16,
+# base16_hopscotch, base16_isotope, base16_londontube, base16_marrakesh,
+# base16_mocha, base16_monokai, base16_nord, base16_ocean,
+# base16_oceanicnext, base16_paraiso, base16_pop, base16_railscasts,
+# base16_seti, base16_shapeshifter, base16_shell, base16_solarized,
+# base16_spacemacs, base16_summerfruit, base16_tomorrow, base16_twilight,
+# base16color, behelit, biogoo, bubblegum, cobalt2, cool, dark,
+# dark_minimal, distinguished, dracula, durant, fairyfloss, hybrid,
+# hybridline, jellybeans, jet, kalisi, kolor, laederon, light, lucius,
+# luna, minimalist, molokai, monochrome, murmur, night_owl, onedark,
+# papercolor, peaksea, powerlineish, qwq, raven, ravenpower, serene,
+# sierra, silver, simple, sol, solarized, solarized_flood, term,
+# term_light, tomorrow, ubaryd, understated, vice, violet, wombat,
+# xtermlight, zenburn
+#
+airline_theme: luna
+#
+# Custom Pathogen Plugins
+#
+custom_pathogen_plugins: []
+#
+# If you want to backup config files set true
+#
+backup_config_files: false

@@ -1,0 +1,42 @@
+# file: roles/vim/vars/CentOS.yml
+# author: Antoni Pàmies <toni@arboli.net>
+#
+---
+#
+# List of Packages
+#
+vim_packages:
+  - epel-release
+  - git
+  - vim
+  - vim-pathogen
+  - vim-devicons
+  - vim-ansible
+  - vim-airline
+  - vim-powerline
+
+#
+# Pathogen plugins
+#
+pathogen_plugins:
+  - name: vim-colors-solarized
+    url: 'https://github.com/altercation/vim-colors-solarized'
+    enabled: false
+  - name: nerdtree
+    url: 'https://github.com/preservim/nerdtree'
+    enabled: true
+  - name: vim-gitgutter
+    url: 'https://github.com/airblade/vim-gitgutter'
+    enabled: true
+  - name: vim-floaterm
+    url: 'https://github.com/voldikss/vim-floaterm'
+    enabled: true
+  - name: vim-airline-themes
+    url: 'https://github.com/vim-airline/vim-airline-themes'
+    enabled: true
+  - name: fugitive
+    url: 'https://tpope.io/vim/fugitive.git'
+    enabled: true
+  - name: vim-jinja2-syntax
+    url: 'https://github.com/Glench/Vim-Jinja2-Syntax'
+    enabled: true

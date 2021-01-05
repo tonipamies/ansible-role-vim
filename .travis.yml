@@ -1,0 +1,68 @@
+#
+#
+#
+---
+dist: xenial
+language: python
+services:
+  - docker
+
+env:
+  global:
+    - ROLE_NAME: vim
+    - MOLECULE_DEBUG: False
+    - ANSIBLE_CALLBACK_WHITELIST: profile_tasks
+  matrix:
+    #
+    # Test defaults.
+    #
+    - MOLECULE_DISTRO: centos:8
+      MOLECULE_INSTANCE_NAME: "CentOS-8"
+    - MOLECULE_DISTRO: debian:buster
+      MOLECULE_INSTANCE_NAME: "Debian-Buster"
+    - MOLECULE_DISTRO: debian:bullseye
+      MOLECULE_INSTANCE_NAME: "Debian-Bullseye"
+    - MOLECULE_DISTRO: ubuntu:bionic
+      MOLECULE_INSTANCE_NAME: "Ubuntu-Bionic"
+    - MOLECULE_DISTRO: ubuntu:focal
+      MOLECULE_INSTANCE_NAME: "Ubuntu-Focal"
+    - MOLECULE_DISTRO: ubuntu:groovy
+      MOLECULE_INSTANCE_NAME: "Ubuntu-Groovy"
+    - MOLECULE_DISTRO: fedora:31
+      MOLECULE_INSTANCE_NAME: "Fedora-31"
+    - MOLECULE_DISTRO: fedora:32
+      MOLECULE_INSTANCE_NAME: "Fedora-32"
+    - MOLECULE_DISTRO: fedora:33
+      MOLECULE_INSTANCE_NAME: "Fedora-33"
+    - MOLECULE_DISTRO: fedora:34
+      MOLECULE_INSTANCE_NAME: "Fedora-34"
+
+branches:
+  only:
+    - main
+#
+# Cache Ansible and Molecule to speed things up
+#
+cache:
+  - pip
+
+install:
+  #
+  # Install Ansible, Molecule, Docker-py, flake8, Ansible-lint
+  #
+  - pip install ansible molecule molecule-docker docker ansible-lint flake8
+  #
+  # Log Docker, Ansible, Ansible-lint and Molecule version
+  #
+  - docker --version
+  - ansible --version
+  - molecule --version
+  - ansible-lint --version
+
+before_script:
+  - cd ../
+  - mv ansible-role-$ROLE_NAME $ROLE_NAME
+  - cd $ROLE_NAME
+
+script:
+  - molecule test

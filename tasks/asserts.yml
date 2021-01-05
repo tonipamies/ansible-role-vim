@@ -1,0 +1,230 @@
+# file: roles/vim/tasks/asserts.yml
+# author: Antoni Pàmies <toni@arboli.net>
+#
+---
+#
+# Test if vim_packages is set correctly
+#
+- name: CHECK VAR | Checks if vim_packages is set correctly
+  assert:
+    that:
+      - vim_packages is defined
+      - vim_packages is iterable
+    quiet: yes
+
+#
+# Test if items in vim_packages are set correctly
+#
+- name: CHECK VAR | Checks if items in vim_packages are set correctly
+  assert:
+    that:
+      - item is string
+    quiet: yes
+    fail_msg: >
+      Item {{ item }} is not string
+  loop: "{{ vim_packages }}"
+
+#
+# Checks that pathogen_dir is a string
+#
+- name: CHECK VAR | Checks that pathogen_dir is a string
+  assert:
+    that:
+      - pathogen_dir is defined
+      - pathogen_dir is string
+    quiet: yes
+    fail_msg: "The variable 'pathogen_dir' must be defined and must be a string"
+
+#
+# Checks that color is a string and has a correct value
+#
+- name: CHECK VAR | Checks that color is a string and has a correct value
+  assert:
+    that:
+      - color is defined
+      - color is string
+      - color in valid_colorschemes
+    quiet: yes
+    fail_msg: >
+      "The variable 'color' must be defined, must be a string and must contain one of:"
+
+      {{ valid_colorschemes | to_nice_yaml }}
+  vars:
+    - valid_colorschemes:
+        - blue
+        - darkblue
+        - default
+        - delek
+        - desert
+        - elflord
+        - evening
+        - industry
+        - koehler
+        - morning
+        - murphy
+        - pablo
+        - peachpuff
+        - ron
+        - shine
+        - slate
+        - torte
+
+#
+# Checks that Airline theme is a string and has a correct value
+#
+- name: CHECK VAR | Checks that Airline theme is a string and has a correct value
+  assert:
+    that:
+      - airline_theme is defined
+      - airline_theme is string
+      - airline_theme in valid_airlinetheme
+    quiet: yes
+    fail_msg: >
+      "The variable 'airline_theme' must be defined, must be a string and must contain one of:"
+
+      {{ valid_airlinetheme | to_nice_yaml }}
+  vars:
+    - valid_airlinetheme:
+      - alduin
+      - angr
+      - atomic
+      - aurora
+      - ayu_mirage
+      - badcat
+      - badwolf
+      - base16
+      - base16_3024
+      - base16_apathy
+      - base16_ashes
+      - base16_atelierdune
+      - base16_atelierforest
+      - base16_atelierheath
+      - base16_atelierlakeside
+      - base16_atelierseaside
+      - base16_bespin
+      - base16_brewer
+      - base16_bright
+      - base16_chalk
+      - base16_classic
+      - base16_codeschool
+      - base16_colors
+      - base16_default
+      - base16_eighties
+      - base16_embers
+      - base16_flat
+      - base16_google
+      - base16_grayscale
+      - base16_greenscreen
+      - base16_harmonic16
+      - base16_hopscotch
+      - base16_isotope
+      - base16_londontube
+      - base16_marrakesh
+      - base16_mocha
+      - base16_monokai
+      - base16_nord
+      - base16_ocean
+      - base16_oceanicnext
+      - base16_paraiso
+      - base16_pop
+      - base16_railscasts
+      - base16_seti
+      - base16_shapeshifter
+      - base16_shell
+      - base16_solarized
+      - base16_spacemacs
+      - base16_summerfruit
+      - base16_tomorrow
+      - base16_twilight
+      - base16color
+      - behelit
+      - biogoo
+      - bubblegum
+      - cobalt2
+      - cool
+      - dark
+      - dark_minimal
+      - distinguished
+      - dracula
+      - durant
+      - fairyfloss
+      - hybrid
+      - hybridline
+      - jellybeans
+      - jet
+      - kalisi
+      - kolor
+      - laederon
+      - light
+      - lucius
+      - luna
+      - minimalist
+      - molokai
+      - monochrome
+      - murmur
+      - night_owl
+      - onedark
+      - papercolor
+      - peaksea
+      - powerlineish
+      - qwq
+      - raven
+      - ravenpower
+      - serene
+      - sierra
+      - silver
+      - simple
+      - sol
+      - solarized
+      - solarized_flood
+      - term
+      - term_light
+      - tomorrow
+      - ubaryd
+      - understated
+      - vice
+      - violet
+      - wombat
+      - xtermlight
+      - zenburn
+#
+# Test if custom_pathogen_plugins is set correctly
+#
+- name: CHECK VAR | Checks if custom_pathogen_plugins is set correctly
+  assert:
+    that:
+      - custom_pathogen_plugins is defined
+      - custom_pathogen_plugins is iterable
+    quiet: yes
+  when:
+    - custom_pathogen_plugins is defined
+
+#
+# Test if items in custom_pathogen_plugins are set correctly
+#
+- name: CHECK VAR | Checks if items in custom_pathogen_plugins are set correctly
+  assert:
+    that:
+      - item.name is defined
+      - item.name is string
+      - item.url is defined
+      - item.url is string
+      - item.enabled is defined
+      - item.enabled
+          | type_debug == 'bool'
+    quiet: yes
+  loop: "{{ custom_pathogen_plugins }}"
+  when:
+    - custom_pathogen_plugins is defined
+
+#
+# Test if backup_config_files is defined and has a correct value
+#
+- name: CHECK VAR | Checks if backup_config_files is defined and has a correct value
+  assert:
+    that:
+      - backup_config_files is defined
+      - backup_config_files
+          | type_debug == 'bool'
+    quiet: yes
+    fail_msg: "The variable 'backup_config_files' must be defined and must be a boolean variable"
