@@ -40,15 +40,15 @@ Refer to the [change log](CHANGELOG.md) for changes in each release.
 ## Linux distributions supported
 
 - CentOS 8
-- Debian 10 "buster"
-- Debian    "bullseye"
+- Debian 10 Buster
+- Debian 11 Bullseye
 - Fedora 31
 - Fedora 32
-- Fedora 33
-- Fedora 34
-- Ubuntu 18.04 "bionic"
-- Ubuntu 20.04 "focal"
-- Ubuntu 20.10 "groovy"
+- Fedora 33 Latest
+- Fedora 34 Rawhide
+- Ubuntu 18.04 Bionic
+- Ubuntu 20.04 Focal
+- Ubuntu 20.10 Groovy
 
 ## Requirements
 

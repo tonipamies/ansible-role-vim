@@ -1,3 +1,6 @@
+# file: roles/vim/molecule/default/molecule.yml
+# author: Antoni Pàmies <toni@arboli.net>
+#
 ---
 dependency:
   name: galaxy

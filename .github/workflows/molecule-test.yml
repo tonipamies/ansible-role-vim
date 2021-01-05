@@ -60,5 +60,7 @@ jobs:
           cd ${ROLE_NAME}
           molecule test
         env:
+          PY_COLORS: '1'
+          ANSIBLE_FORCE_COLOR: '1'
           MOLECULE_DISTRO: ${{ matrix.molecule_distro.name }}
           MOLECULE_INSTANCE_NAME: ${{ matrix.molecule_distro.instance }}

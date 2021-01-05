@@ -1,3 +1,6 @@
+# file: roles/vim/meta/main.yml
+# author: Antoni Pàmies <toni@arboli.net>
+#
 ---
 galaxy_info:
   role_name: vim
@@ -6,24 +9,24 @@ galaxy_info:
   min_ansible_version: 2.9.0
   license: GPLv3
   platforms:
-    - name: CentOS
+    - name: EL
       versions:
         - 8
     - name: Debian
       versions:
-        - 10
-        - 11
+        - buster
+        - bullseye
     - name: Fedora
       versions:
         - 31
         - 32
-        - 33
-        - 34
+        - latest
+        - rawhide
     - name: Ubuntu
       versions:
-        - 18.04
-        - 20.04
-        - 20.10
+        - bionic
+        - focal
+        - groovy
   galaxy_tags:
     - vim
     - system
