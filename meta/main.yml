@@ -20,8 +20,6 @@ galaxy_info:
       versions:
         - 31
         - 32
-        - latest
-        - rawhide
     - name: Ubuntu
       versions:
         - bionic
