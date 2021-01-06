@@ -100,7 +100,7 @@ The following example installs [nerdcommenter](https://github.com/preservim/nerd
   become: true
 
   roles:
-    - role: apo.vim
+    - role: vim
       vars:
         - backup_config_files: true
         - color: ron
