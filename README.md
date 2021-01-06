@@ -3,6 +3,7 @@
 [![Ansible-lint rules explanation](https://img.shields.io/badge/Ansible--lint-rules%20table-blue.svg)](https://ansible-lint.readthedocs.io/en/latest/default_rules.html)
 [![Ansible-lint](https://img.shields.io/badge/Ansible--lint-Passed-brightgreen)](https://ansible-lint.readthedocs.io/)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
+[![CodeFactor](https://www.codefactor.io/repository/github/tonipamies/ansible-role-vim/badge)](https://www.codefactor.io/repository/github/tonipamies/ansible-role-vim)
 <br>
 [![Galaxy VIM](https://img.shields.io/ansible/role/52632)](https://galaxy.ansible.com/tonipamies/vim)
 [![Galaxy VIM](https://img.shields.io/ansible/quality/52632)](https://galaxy.ansible.com/tonipamies/vim)
