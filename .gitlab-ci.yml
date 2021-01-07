@@ -1,6 +1,9 @@
 ---
 image: debian:latest
 
+services:
+  - docker:dind
+
 before_script:
   - apt-get update -y
   - apt-get install -y python3-minimal python3-apt python3-pip docker
