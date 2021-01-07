@@ -28,12 +28,17 @@ before_script:
 #
 # Tests
 #
-for distro, name in (('centos:8', 'Centos8'), ('debian:buster', 'Debian-Buster'))
-do
-test:molecule_${name}:
+molecule_centos_8:
   stage: test
   variables:
-    MOLECULE_DISTRO: ${distro}
-    MOLECULE_INSTANCE_NAME: ${name}
-  <<: *molecula_test
-done
+    MOLECULE_DISTRO: centos:8
+    MOLECULE_INSTANCE_NAME: Centos-8
+  <<: *molecule_test
+
+molecule_debian_buster:
+  stage: test
+  variables:
+    MOLECULE_DISTRO: debian:buster
+    MOLECULE_INSTANCE_NAME: Debian-Buster 
+  <<: *molecule_test
+
