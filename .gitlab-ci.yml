@@ -1,4 +1,7 @@
 ---
+stages:
+  - test
+
 image: debian:latest
 
 before_script:
@@ -10,14 +13,27 @@ before_script:
   - molecule --version
   - ansible-lint --version
 
-molecule:
+#
+# Templates
+#
+.test:molecule: &molecule_test
   variables:
-    MOLECULE_DISTRO: centos:8
-    MOLECULE_INSTANCE_NAME: Centos8
     PY_COLORS: '1'
     ANSIBLE_FORCE_COLOR: '1'
     ROLE_NAME: vim
-  stage: test
   script:
     - cd .. && ln -sf $CI_PROJECT_DIR $ROLE_NAME && cd $ROLE_NAME
     - molecule test
+
+#
+# Tests
+#
+for distro, name in ((centos:8, Centos8), (debian:buster, Debian-Buster))
+do
+test:molecule_${name}:
+  stage: test
+  variables:
+    MOLECULE_DISTRO: ${distro}
+    MOLECULE_INSTANCE_NAME: ${name}
+  <<: *molecula_test
+done
