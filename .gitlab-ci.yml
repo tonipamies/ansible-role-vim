@@ -39,6 +39,5 @@ molecule_debian_buster:
   stage: test
   variables:
     MOLECULE_DISTRO: debian:buster
-    MOLECULE_INSTANCE_NAME: Debian-Buster 
+    MOLECULE_INSTANCE_NAME: Debian-Buster
   <<: *molecule_test
-
