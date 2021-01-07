@@ -1,8 +1,8 @@
 ---
 image: debian:latest
 
-services:
-  - docker:dind
+#services:
+#  - docker:dind
 
 before_script:
   - apt-get update -y
@@ -19,6 +19,8 @@ molecule:
     MOLECULE_INSTANCE_NAME: Centos8
     PY_COLORS: '1'
     ANSIBLE_FORCE_COLOR: '1'
+    ROLE_NAME: vim
   stage: test
   script:
+    - cd .. && ln -sf $CI_PROJECT_DIR	$ROLE_NAME && cd $ROLE_NAME
     - molecule test
