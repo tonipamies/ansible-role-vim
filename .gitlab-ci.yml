@@ -11,7 +11,7 @@ before_script:
 
 molecule:
   variables:
-    MOLECULE_DISTRO: centos: 8
+    MOLECULE_DISTRO: centos:8
     MOLECULE_INSTANCE_NAME: Centos8
     PY_COLORS: '1'
     ANSIBLE_FORCE_COLOR: '1'
