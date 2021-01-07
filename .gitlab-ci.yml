@@ -3,7 +3,7 @@ image: debian:latest
 
 before_script:
   - apt-get -y update
-  - apt-get install -y python3-minimal python3-apt
+  - apt-get install -y python3-minimal python3-apt python3-pip
   - python3 --version
   - python3 -m pip3 install ansible molecule[docker] ansible-lint flake8
   - ansible --version
