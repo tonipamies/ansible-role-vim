@@ -1,9 +1,6 @@
 ---
 image: debian:latest
 
-#services:
-#  - docker:dind
-
 before_script:
   - apt-get update -y
   - apt-get install -y python3-minimal python3-apt python3-pip docker
@@ -22,5 +19,5 @@ molecule:
     ROLE_NAME: vim
   stage: test
   script:
-    - cd .. && ln -sf $CI_PROJECT_DIR	$ROLE_NAME && cd $ROLE_NAME
+    - cd .. && ln -sf $CI_PROJECT_DIR $ROLE_NAME && cd $ROLE_NAME
     - molecule test
