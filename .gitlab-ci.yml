@@ -2,18 +2,19 @@
 image: debian:latest
 
 before_script:
-  - apt-get -y update
-  - apt-get install -y python3-minimal python3-apt python3-pip
+  - apt-get install -y python3-minimal python3-apt python3-pip docker
   - python3 --version
-  - pip3 install ansible molecule[docker] ansible-lint flake8
+  - pip3 install ansible molecule[docker] ansible-lint flake8 molecule-docker docker
   - ansible --version
   - molecule --version
   - ansible-lint --version
 
 molecule:
   variables:
-    MOLECULE_DISTRO: centos:8
+    MOLECULE_DISTRO: centos: 8
     MOLECULE_INSTANCE_NAME: Centos8
+    PY_COLORS: '1'
+    ANSIBLE_FORCE_COLOR: '1'
   stage: test
   script:
     - molecule test
