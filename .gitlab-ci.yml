@@ -2,6 +2,7 @@
 image: centos:8
 
 before_script:
+  - yum install python3 docker
   - python3 --version
   - python3 -m pip install ansible molecule[docker]
   - ansible --version
