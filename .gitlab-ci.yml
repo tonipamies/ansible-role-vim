@@ -1,9 +1,6 @@
 ---
 image: centos:8
 
-services:
-  - centos:dind
-
 before_script:
   - docker info
   - python3 --version
