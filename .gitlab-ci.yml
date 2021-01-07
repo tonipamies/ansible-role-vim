@@ -28,7 +28,7 @@ before_script:
 #
 # Tests
 #
-for distro, name in ((centos:8, Centos8), (debian:buster, Debian-Buster))
+for distro, name in (('centos:8', 'Centos8'), ('debian:buster', 'Debian-Buster'))
 do
 test:molecule_${name}:
   stage: test
