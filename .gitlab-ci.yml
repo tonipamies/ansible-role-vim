@@ -2,7 +2,7 @@
 stages:
   - test
 
-image: tonipamies/molecule:lastest
+image: quay.io/ansible/molecule
 
 variables: &global-variables
   PY_COLORS: '1'
