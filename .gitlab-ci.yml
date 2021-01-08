@@ -2,7 +2,7 @@
 stages:
   - test
 
-image: quay.io/tonipamies/molecule:lastest
+image: quay.io/tonipamies/molecule:latest
 
 variables: &global-variables
   PY_COLORS: '1'
