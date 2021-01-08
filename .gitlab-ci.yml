@@ -2,16 +2,7 @@
 stages:
   - test
 
-image: debian:latest
-
-before_script:
-  - apt-get update -y
-  - apt-get install -y python3-minimal python3-apt python3-pip docker
-  - python3 --version
-  - pip3 install ansible molecule[docker] ansible-lint flake8 molecule-docker docker
-  - ansible --version
-  - molecule --version
-  - ansible-lint --version
+image: tonipamies/molecule:last
 
 variables: &global-variables
   PY_COLORS: '1'
@@ -43,5 +34,77 @@ molecule_debian_buster:
     <<: *global-variables
     MOLECULE_DISTRO: debian:buster
     MOLECULE_INSTANCE_NAME: Debian-Buster
+  script:
+    - *molecule_test
+
+molecule_debian_bullseye:
+  stage: test
+  variables:
+    <<: *global-variables
+    MOLECULE_DISTRO: debian:bullseye
+    MOLECULE_INSTANCE_NAME: Debian-Bullseye
+  script:
+    - *molecule_test
+
+molecule_ubuntu_bionic:
+  stage: test
+  variables:
+    <<: *global-variables
+    MOLECULE_DISTRO: ubuntu:bionic
+    MOLECULE_INSTANCE_NAME: Ubuntu-Bionic
+  script:
+    - *molecule_test
+
+molecule_ubuntu_focal:
+  stage: test
+  variables:
+    <<: *global-variables
+    MOLECULE_DISTRO: ubuntu:focal
+    MOLECULE_INSTANCE_NAME: Ubuntu-Focal
+  script:
+    - *molecule_test
+
+molecule_ubuntu_groovy:
+  stage: test
+  variables:
+    <<: *global-variables
+    MOLECULE_DISTRO: ubuntu:groovy
+    MOLECULE_INSTANCE_NAME: Ubuntu-Groovy
+  script:
+    - *molecule_test
+
+molecule_fedora_31:
+  stage: test
+  variables:
+    <<: *global-variables
+    MOLECULE_DISTRO: fedora:31
+    MOLECULE_INSTANCE_NAME: Fedora-31
+  script:
+    - *molecule_test
+
+molecule_fedora_32:
+  stage: test
+  variables:
+    <<: *global-variables
+    MOLECULE_DISTRO: fedora:32
+    MOLECULE_INSTANCE_NAME: Fedora-32
+  script:
+    - *molecule_test
+
+molecule_fedora_33:
+  stage: test
+  variables:
+    <<: *global-variables
+    MOLECULE_DISTRO: fedora:33
+    MOLECULE_INSTANCE_NAME: Fedora-33
+  script:
+    - *molecule_test
+
+molecule_fedora_34:
+  stage: test
+  variables:
+    <<: *global-variables
+    MOLECULE_DISTRO: fedora:34
+    MOLECULE_INSTANCE_NAME: Fedora-34
   script:
     - *molecule_test
