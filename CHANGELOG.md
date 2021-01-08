@@ -3,8 +3,10 @@
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
 - [Change log](#change-log)
-  - [1.0.0 - 2020-12-21](#100---2020-12-21)
+  - [1.0.1 - 2021-01-08](#101---2021-01-08)
     - [Added](#added)
+  - [1.0.0 - 2020-12-21](#100---2020-12-21)
+    - [Added](#added-1)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -13,6 +15,17 @@
 This file contains al notable changes to the VIM Ansible role.
 
 This file adheres to the guidelines of <http://keepachangelog.com/>. Versioning follows [Semantic Versioning](http://semver.org/).
+
+## 1.0.1 - 2021-01-08
+
+### Added
+
+- Support for Fedora 31, 32, 33 and 34
+- Support for Debian "Bullseye"
+- Support for Ubuntu "Bionic", "Focal" and "Groovy"
+- Installation via package or pathogen plugin:
+  - toml-syntax
+  - Solarized Colorscheme
 
 ## 1.0.0 - 2020-12-21
 

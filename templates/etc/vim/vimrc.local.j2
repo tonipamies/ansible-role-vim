@@ -129,12 +129,6 @@ if has("autocmd")
   autocmd FileType c setlocal shiftwidth=4 softtabstop=4 tabstop=4
   augroup END
 endif
-{% if color is defined %}
-"
-" Set color to {{ color }}
-"
-colo {{ color }}
-{% endif %}
 "
 " Include configuration file for pathogen
 "
@@ -172,4 +166,10 @@ if filereadable("/etc/vim/{{ i.name }}.vim")
 endif
 {% endif %}
 {% endfor %}
+{% endif %}
+{% if color is defined %}
+"
+" Set color to {{ color }}
+"
+colo {{ color }}
 {% endif %}

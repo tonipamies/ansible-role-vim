@@ -21,7 +21,7 @@ vim_packages:
 pathogen_plugins:
   - name: vim-colors-solarized
     url: 'https://github.com/altercation/vim-colors-solarized'
-    enabled: false
+    enabled: true
   - name: nerdtree
     url: 'https://github.com/preservim/nerdtree'
     enabled: true
@@ -39,4 +39,7 @@ pathogen_plugins:
     enabled: true
   - name: vim-jinja2-syntax
     url: 'https://github.com/Glench/Vim-Jinja2-Syntax'
+    enabled: true
+  - name: vim-toml-syntax
+    url: 'https://github.com/cespare/vim-toml.git'
     enabled: true

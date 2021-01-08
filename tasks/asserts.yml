@@ -67,7 +67,9 @@
         - ron
         - shine
         - slate
+        - solarized
         - torte
+        - zellnet
 
 #
 # Checks that Airline theme is a string and has a correct value

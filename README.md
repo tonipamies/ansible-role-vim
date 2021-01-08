@@ -38,8 +38,10 @@ An Ansible role to install and configure vim in linux distributions.  Specifical
 - Install [nerdtree](https://github.com/preservim/nerdtree)
 - Install [gitgutter](https://github.com/airblade/vim-gitgutter)
 - Install [floaterm](https://github.com/voldikss/vim-floaterm)
-- Install [jinja2-syntax](https://github.com/Glench/Vim-Jinja2-Syntax)
 - Install [fugitive](https://tpope.io/vim/fugitive.git)
+- Install [solarized colorscheme](https://github.com/altercation/vim-colors-solarized)
+- Install [jinja2-syntax](https://github.com/Glench/Vim-Jinja2-Syntax)
+- Install [toml-syntax](https://github.com/cespare/vim-toml)
 
 Refer to the [change log](CHANGELOG.md) for changes in each release.
 
@@ -70,7 +72,7 @@ None of the variables below are required. When not defined by the user, the [def
 
 | Variable                       | Default         | Comments                                                                             |
 | :---                           | :---            | :---                                                                                 |
-| `color`                          | 'darkblue'      | The default colorschema<br>One of: blue, darkblue, default, delek, desert, elflord, evening, industry, koehler,<br>morning, murphy, pablo, peachpuff, ron, shine, slate, torte                  |
+| `color`                          | 'darkblue'      | The default colorschema<br>One of: blue, darkblue, default, delek, desert, elflord, evening, industry, koehler,<br>morning, murphy, pablo, peachpuff, ron, shine, slate, solarized, torte, zellnet |
 | `airline_theme`| 'luna' | The default airline theme<br>One of: alduin, angr, atomic, aurora, ayu_mirage, badcat, badwolf, base16,<br>base16_3024, base16_apathy, base16_ashes, base16_atelierdune,<br>base16_atelierforest, base16_atelierheath, base16_atelierlakeside<br>base16_atelierseaside, base16_bespin, base16_brewer, base16_bright,<br>base16_chalk, base16_classic, base16_codeschool, base16_colors,<br>base16_default, base16_eighties, base16_embers, base16_flat,<br>base16_google, base16_grayscale, base16_greenscreen, base16_harmonic16,<br>base16_hopscotch, base16_isotope, base16_londontube, base16_marrakesh,<br>base16_mocha, base16_monokai, base16_nord, base16_ocean,<br>base16_oceanicnext, base16_paraiso, base16_pop, base16_railscasts,<br>base16_seti, base16_shapeshifter, base16_shell, base16_solarized,<br>base16_spacemacs, base16_summerfruit, base16_tomorrow, base16_twilight,<br>base16color, behelit, biogoo, bubblegum, cobalt2, cool, dark,<br>dark_minimal, distinguished, dracula, durant, fairyfloss, hybrid,<br>hybridline, jellybeans, jet, kalisi, kolor, laederon, light, lucius,<br>luna, minimalist, molokai, monochrome, murmur, night_owl, onedark,<br>papercolor, peaksea, powerlineish, qwq, raven, ravenpower, serene,<br>sierra, silver, simple, sol, solarized, solarized_flood, term,<br>term_light, tomorrow, ubaryd, understated, vice, violet, wombat,<br>xtermlight, zenburn<br>|
 |`custom_pathogen_plugins`|[]|List of dicts specifying the pathogen plugins to be added. See [below](#Custom-pathogen-plugins) for details|
 |`backup_config_files`|false| When `true`, this role will backup all the configurations files before to do any change|
