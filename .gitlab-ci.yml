@@ -2,7 +2,7 @@
 stages:
   - test
 
-image: tonipamies/molecule:last
+image: tonipamies/molecule:lastest
 
 variables: &global-variables
   PY_COLORS: '1'
