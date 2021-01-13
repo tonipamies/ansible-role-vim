@@ -12,9 +12,9 @@ platforms:
     pre_build_image: True
 provisioner:
   name: ansible
-  log: True
+  log: false
   options:
-    vvv: True
+    vvv: false
 verifier:
   name: ansible
 lint: |

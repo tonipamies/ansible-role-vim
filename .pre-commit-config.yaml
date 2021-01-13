@@ -18,6 +18,7 @@ repos:
         always_run: false
         pass_filenames: true
         files: \.(yaml|yml)$
+        # yamllint disable-line rule:line-length
         entry: env ANSIBLE_LIBRARY=./plugins/modules ANSIBLE_MODULE_UTILS=./plugins/module_utils ansible-lint --force-color
 
   - repo: https://github.com/adrienverge/yamllint.git
@@ -36,3 +37,15 @@ repos:
     hooks:
       - id: doctoc
         args: [ '--github' ]
+
+  - repo: https://github.com/kadrach/pre-commit-gitlabci-lint
+    rev: master
+    hooks:
+      - id: gitlabci-lint
+        args: ["https://gitlab.com"]
+
+  - repo: https://github.com/robertdebock/pre-commit
+    rev: v1.1.2
+    hooks:
+      - id: ansible_role_find_unused_variable
+      - id: ansible_role_find_empty_files

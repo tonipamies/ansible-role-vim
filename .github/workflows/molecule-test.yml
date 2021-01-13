@@ -35,7 +35,7 @@ jobs:
             instance: 'Fedora-34'
     env:
       ROLE_NAME: vim
-      MOLECULE_DEBUG: true
+      MOLECULE_DEBUG: false
       ANSIBLE_CALLBACK_WHITELIST: profile_tasks
     steps:
       - uses: actions/checkout@v2
