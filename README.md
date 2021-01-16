@@ -42,6 +42,7 @@ An Ansible role to install and configure vim in linux distributions.  Specifical
 - Install [solarized colorscheme](https://github.com/altercation/vim-colors-solarized)
 - Install [jinja2-syntax](https://github.com/Glench/Vim-Jinja2-Syntax)
 - Install [toml-syntax](https://github.com/cespare/vim-toml)
+- Install [mikrotik-syntax](git clone https://github.com/zainin/vim-mikrotik)
 
 Refer to the [change log](CHANGELOG.md) for changes in each release.
 
