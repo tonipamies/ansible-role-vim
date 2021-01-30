@@ -1,4 +1,4 @@
-# file: roles/vim/tasks/asserts.yml
+# file: roles/vim/tasks/preasserts.yml
 # author: Antoni Pàmies <toni@arboli.net>
 #
 ---

@@ -44,3 +44,6 @@ pathogen_plugins:
   - name: vim-mikrotik-syntax
     url: 'https://github.com/zainin/vim-mikrotik'
     enabled: true
+  - name: vim-ansible
+    url: 'https://github.com/pearofducks/ansible-vim'
+    enabled: true

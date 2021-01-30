@@ -30,30 +30,32 @@
 
 An Ansible role to install and configure vim in linux distributions.  Specifically, the responsibilities of this role are to:
 
-- Install vim packages and [pathogen](https://github.com/tpope/vim-pathogen) plugins from the official distribution repositories
-- Install [pathogen](https://github.com/tpope/vim-pathogen) plugin manager
+- Installs vim packages and [pathogen](https://github.com/tpope/vim-pathogen) plugins from the official distribution repositories
+- Installs [pathogen](https://github.com/tpope/vim-pathogen) plugin manager
     - Configuration file [pathogen.vim](templates/etc/vim/pathogen.vim.j2)
-- Install [powerline](https://powerline.readthedocs.io/en/latest/)
-- Install [airline](https://github.com/vim-airline/vim-airline)
+- Installs [powerline](https://powerline.readthedocs.io/en/latest/)
+- Installs [airline](https://github.com/vim-airline/vim-airline)
     - Configuration file [airline.vim](templates/etc/vim/airline.vim.j2)
-- Install [airline-themes](https://github.com/vim-airline/vim-airline-themes)
+- Installs [airline-themes](https://github.com/vim-airline/vim-airline-themes)
     - Configuration file [vim-airline-themes.vim](templates/etc/vim/vim-airline-themes.vim.j2)
-- Install [nerdtree](https://github.com/preservim/nerdtree)
+- Installs [nerdtree](https://github.com/preservim/nerdtree)
     - Configuration file [nerdtree.vim](templates/etc/vim/nerdtree.vim.j2)
-- Install [gitgutter](https://github.com/airblade/vim-gitgutter)
+- Installs [gitgutter](https://github.com/airblade/vim-gitgutter)
     - Configuration file [vim-gitgutter.vim](templates/etc/vim/vim-gitgutter.vim.j2)
-- Install [floaterm](https://github.com/voldikss/vim-floaterm)
+- Installs [floaterm](https://github.com/voldikss/vim-floaterm)
     - Configuration file [vim-floaterm.vim](templates/etc/vim/vim-floaterm.vim.j2)
-- Install [fugitive](https://tpope.io/vim/fugitive.git)
+- Installs [fugitive](https://tpope.io/vim/fugitive.git)
     - Configuration file [fugitive.vim](templates/etc/vim/fugitive.vim.j2)
-- Install [solarized colorscheme](https://github.com/altercation/vim-colors-solarized)
+- Installs [solarized colorscheme](https://github.com/altercation/vim-colors-solarized)
     - Configuration file [vim-colors-solarized.vim](templates/etc/vim/vim-colors-solarized.vim.j2)
-- Install [jinja2-syntax](https://github.com/Glench/Vim-Jinja2-Syntax)
+- Installs [jinja2-syntax](https://github.com/Glench/Vim-Jinja2-Syntax)
     - Configuration file [vim-jinja2-syntax.vim](templates/etc/vim/vim-jinja2-syntax.vim.j2)
-- Install [toml-syntax](https://github.com/cespare/vim-toml)
+- Installs [toml-syntax](https://github.com/cespare/vim-toml)
     - Configuration file [vim-toml-syntax.vim](templates/etc/vim/vim-toml-syntax.vim.j2)
-- Install [mikrotik-syntax](https://github.com/zainin/vim-mikrotik)
+- Installs [mikrotik-syntax](https://github.com/zainin/vim-mikrotik)
     - Configuration file [vim-mikrotik-syntax.vim](templates/etc/vim/vim-mikrotik-syntax.vim.j2)
+- Installs [ansible-vim](https://github.com/pearofducks/ansible-vim)
+    - Configuration file [vim-ansible.vim](templates/etc/vim/vim-ansible.vim.j2)
 - Default vim configuration on [vimrc.local](templates/etc/vim/vimrc.local.j2)
 
 Refer to the [change log](CHANGELOG.md) for changes in each release.
