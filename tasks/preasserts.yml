@@ -26,7 +26,7 @@
       assert:
         that:
           - valid_distributions
-              | selectattr( 'name', 'equalto', ansible_distribution )
+              | selectattr( 'name', 'equalto', ansible_facts['distribution'] )
               | list
               | count > 0
         quiet: yes
@@ -38,7 +38,7 @@
                | map( attribute='name' )
                | list
                | to_nice_yaml }}
-          If you want to test your your distribution '{{ ansible_distribution }}', do it at your own risk.
+          If you want to test your your distribution '{{ ansible_facts['distribution'] }}', do it at your own risk.
 
           Need to add your distribution on variable 'valid_distributions' on task 'CHECK DIST' in file 'tasks/asserts.yml'
 
@@ -48,24 +48,24 @@
     - name: "CHECK DIST | Checks if Version distribution is compatible with the role"
       assert:
         that:
-          - ansible_distribution_major_version in
+          - ansible_facts['distribution_major_version'] in
             valid_distributions
-              | selectattr( 'name', 'equalto', ansible_distribution )
+              | selectattr( 'name', 'equalto', ansible_facts['distribution'] )
               | map( attribute = 'versions' )
               | list
               | first
         quiet: yes
         fail_msg: >
-          This role is only fully tested with the following versions of distribution {{ ansible_distribution }}
+          This role is only fully tested with the following versions of distribution {{ ansible_facts['distribution'] }}
 
 
           {{ valid_distributions
-               | selectattr( 'name', 'equalto', ansible_distribution )
+               | selectattr( 'name', 'equalto', ansible_facts['distribution'] )
                | map( attribute = 'versions' )
                | list
                | first
                | to_nice_yaml }}
-          If you want to test on your version '{{ ansible_distribution_major_version }}', do it at your own risk.
+          If you want to test on your version '{{ ansible_facts['distribution_major_version'] }}', do it at your own risk.
 
           Need to add your version distribution on variable 'valid_distributions' on task 'CHECK DIST' in file 'tasks/asserts.yml'
   vars:
