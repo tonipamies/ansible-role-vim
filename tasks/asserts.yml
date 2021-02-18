@@ -9,7 +9,7 @@
   assert:
     that:
       - vim_packages is defined
-      - vim_packages is iterable
+      - vim_packages | type_debug == 'list'
     quiet: yes
 
 #
@@ -196,7 +196,7 @@
   assert:
     that:
       - custom_pathogen_plugins is defined
-      - custom_pathogen_plugins is iterable
+      - custom_pathogen_plugins | type_debug == 'list'
     quiet: yes
   when:
     - custom_pathogen_plugins is defined
@@ -212,10 +212,9 @@
       - item.url is defined
       - item.url is string
       - item.enabled is defined
-      - item.enabled
-          | type_debug == 'bool'
+      - item.enabled | type_debug == 'bool'
     quiet: yes
-  loop: "{{ custom_pathogen_plugins }}"
+  loop: "{{ custom_pathogen_plugins | list }}"
   when:
     - custom_pathogen_plugins is defined
 
@@ -226,7 +225,6 @@
   assert:
     that:
       - backup_config_files is defined
-      - backup_config_files
-          | type_debug == 'bool'
+      - backup_config_files | type_debug == 'bool'
     quiet: yes
     fail_msg: "The variable 'backup_config_files' must be defined and must be a boolean variable"
