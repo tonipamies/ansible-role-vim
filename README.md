@@ -1,5 +1,4 @@
 [![Molecule Test](https://github.com/tonipamies/ansible-role-vim/workflows/Molecule%20Test/badge.svg)](https://github.com/tonipamies/ansible-role-vim/actions?query=workflow%3AMolecule%20Test+branch%3Amain+event%3Apush)
-[![Build Status](https://travis-ci.com/tonipamies/ansible-role-vim.svg?token=W4S9sANqHqw3C13xVUPs&branch=main)](https://travis-ci.com/tonipamies/ansible-role-vim)
 [![Ansible-lint rules explanation](https://img.shields.io/badge/Ansible--lint-rules%20table-blue.svg)](https://ansible-lint.readthedocs.io/en/latest/default_rules.html)
 [![Ansible-lint](https://img.shields.io/badge/Ansible--lint-Passed-brightgreen)](https://ansible-lint.readthedocs.io/)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
