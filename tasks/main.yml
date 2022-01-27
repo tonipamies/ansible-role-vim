@@ -146,6 +146,38 @@
     - configure
 
 #
+# Configuring GIT
+#
+- name: CONFIG_GIT | Git setup http proxy
+  git_config:
+    name: http.proxy
+    value: "{{ proxy_env.http_proxy }}"
+    scope: global
+  when:
+    - pathogen_dir is defined
+    - proxy_env.http_proxy is defined
+    - proxy_env.http_proxy | length >0
+  tags:
+    - install
+    - configure
+
+#
+# Git setup https proxy
+#
+- name: CONFIG_GIT | Git setup https proxy
+  git_config:
+    name: https.proxy
+    value: "{{ proxy_env.https_proxy }}"
+    scope: global
+  when:
+    - pathogen_dir is defined
+    - proxy_env.https_proxy is defined
+    - proxy_env.https_proxy | length >0
+  tags:
+    - install
+    - configure
+    
+#
 # Deploying plugins from Git
 #
 - name: INSTALL_PLUGINS | Deploying vim plugins from Git
