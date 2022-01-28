@@ -66,11 +66,11 @@ Refer to the [change log](CHANGELOG.md) for changes in each release.
 - Debian 11 Bullseye
 - Fedora 31
 - Fedora 32
-- Fedora 33 Latest
-- Fedora 34 Rawhide
+- Fedora 33
+- Fedora 34
+- Fedora 35
 - Ubuntu 18.04 Bionic
 - Ubuntu 20.04 Focal
-- Ubuntu 20.10 Groovy
 
 ## Requirements
 
