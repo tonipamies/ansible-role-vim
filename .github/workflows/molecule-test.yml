@@ -33,6 +33,8 @@ jobs:
             instance: 'Fedora-33'
           - name: 'fedora:34'
             instance: 'Fedora-34'
+          - name: 'fedora:35'
+            instance: 'Fedora-35'
     env:
       ROLE_NAME: vim
       MOLECULE_DEBUG: false
