@@ -23,8 +23,6 @@ jobs:
             instance: 'Ubuntu-Bionic'
           - name: 'ubuntu:focal'
             instance: 'Ubuntu-Focal'
-          - name: 'ubuntu:groovy'
-            instance: 'Ubuntu-Groovy'
           - name: 'fedora:31'
             instance: 'Fedora-31'
           - name: 'fedora:32'
