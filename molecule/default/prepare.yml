@@ -13,13 +13,13 @@
     # Check for python
     #
     - name: Check for Python
-      raw: test -e /usr/bin/python || test -e /usr/bin/python3
+      ansible.builtin.raw: test -e /usr/bin/python || test -e /usr/bin/python3
       changed_when: false
       failed_when: false
       register: check_python
 
     - name: Install Python
-      raw: >
+      ansible.builtin.raw: >
         (test -e /usr/bin/apt-get && (apt-get -y update && apt-get install -y python3-minimal python3-apt)) ||
         (test -e /usr/bin/apt-get && (apt-get -y update && apt-get install -y python-minimal2)) ||
         (test -e /usr/bin/apt-get && (apt-get -y update && apt-get install -y python-minimal )) ||

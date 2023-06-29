@@ -6,7 +6,7 @@
 # Test if vim_packages is set correctly
 #
 - name: CHECK VAR | Checks if vim_packages is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - vim_packages is defined
       - vim_packages | type_debug == 'list'
@@ -16,7 +16,7 @@
 # Test if items in vim_packages are set correctly
 #
 - name: CHECK VAR | Checks if items in vim_packages are set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - item is string
     quiet: yes
@@ -28,7 +28,7 @@
 # Checks that pathogen_dir is a string
 #
 - name: CHECK VAR | Checks that pathogen_dir is a string
-  assert:
+  ansible.builtin.assert:
     that:
       - pathogen_dir is defined
       - pathogen_dir is string
@@ -39,7 +39,7 @@
 # Checks that color is a string and has a correct value
 #
 - name: CHECK VAR | Checks that color is a string and has a correct value
-  assert:
+  ansible.builtin.assert:
     that:
       - color is defined
       - color is string
@@ -75,7 +75,7 @@
 # Checks that Airline theme is a string and has a correct value
 #
 - name: CHECK VAR | Checks that Airline theme is a string and has a correct value
-  assert:
+  ansible.builtin.assert:
     that:
       - airline_theme is defined
       - airline_theme is string
@@ -193,7 +193,7 @@
 # Test if custom_pathogen_plugins is set correctly
 #
 - name: CHECK VAR | Checks if custom_pathogen_plugins is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - custom_pathogen_plugins is defined
       - custom_pathogen_plugins | type_debug == 'list'
@@ -205,7 +205,7 @@
 # Test if items in custom_pathogen_plugins are set correctly
 #
 - name: CHECK VAR | Checks if items in custom_pathogen_plugins are set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - item.name is defined
       - item.name is string
@@ -222,7 +222,7 @@
 # Test if backup_config_files is defined and has a correct value
 #
 - name: CHECK VAR | Checks if backup_config_files is defined and has a correct value
-  assert:
+  ansible.builtin.assert:
     that:
       - backup_config_files is defined
       - backup_config_files | type_debug == 'bool'

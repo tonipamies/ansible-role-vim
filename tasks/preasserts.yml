@@ -11,7 +11,7 @@
     # Check Ansible Version
     #
     - name: "CHECK ANSIBLE | Checks if ansible version is compatible with the role"
-      fail:
+      ansible.builtin.fail:
         msg: >
           You need an Ansible version higher or equal than {{ valid_ansible_version }}
 
@@ -23,7 +23,7 @@
     # Check Distribution
     #
     - name: "CHECK DIST | Checks if Distribution is compatible with the role"
-      assert:
+      ansible.builtin.assert:
         that:
           - valid_distributions
               | selectattr( 'name', 'equalto', ansible_facts['distribution'] )
@@ -46,7 +46,7 @@
     # Check Version Distribution
     #
     - name: "CHECK DIST | Checks if Version distribution is compatible with the role"
-      assert:
+      ansible.builtin.assert:
         that:
           - ansible_facts['distribution_major_version'] in
             valid_distributions

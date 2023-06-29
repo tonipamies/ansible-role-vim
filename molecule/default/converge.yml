@@ -6,7 +6,7 @@
   hosts: all
   tasks:
     - name: "INCLUDE ROLE | Install Vim Packages & Configure it"
-      include_role:
+      ansible.builtin.include_role:
         name: "vim"
       vars:
         - backup_config_files: true

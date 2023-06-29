@@ -6,7 +6,8 @@
 # Asserts
 #
 - name: INCLUDE PREASSERTS | Include PreAsserts
-  include: preasserts.yml
+  ansible.builtin.import_tasks:
+    file: preasserts.yml
   tags:
     - always
 
@@ -14,7 +15,7 @@
 # Include distribution dependent variables
 #
 - name: INCLUDE VARS | Include distribution dependent variables
-  include_vars: "{{ item }}"
+  ansible.builtin.include_vars: "{{ item }}"
   with_first_found:
     - files:
         - "{{ ansible_facts['distribution'] }}-{{ ansible_facts['distribution_major_version'] }}.yml"
@@ -32,7 +33,8 @@
 # Asserts
 #
 - name: INCLUDE ASSERTS | Include Asserts
-  include: asserts.yml
+  ansible.builtin.import_tasks:
+    file: asserts.yml
   tags:
     - always
 
@@ -40,7 +42,7 @@
 # Install vim base packages
 #
 - name: INSTALL_PKG | Install Git and vim Base Packages | WARNING! This task can take several minutes
-  package:
+  ansible.builtin.package:
     name: "{{ item }}"
     state: present
   loop: "{{ vim_packages }}"
@@ -51,7 +53,7 @@
 # Add vimrc.local to master vimrc
 #
 - name: MODIFY_FILE | Modification of file vimrc to add vimrc.local
-  blockinfile:
+  ansible.builtin.blockinfile:
     path: /etc/vimrc
     marker: '" {mark} ANSIBLE MANAGED BLOCK -----+'
     backup: "{{ backup_config_files }}"
@@ -72,7 +74,7 @@
 # Ensure that /etc/vim directory exists
 #
 - name: CREATE_DIR | Ensure /etc/vim directory exists
-  file:
+  ansible.builtin.file:
     path: "/etc/vim"
     state: directory
     recurse: no
@@ -89,7 +91,7 @@
 # Create vimrc.local file
 #
 - name: TEMPLATE | Create vimrc.local file
-  template:
+  ansible.builtin.template:
     src: etc/vim/vimrc.local.j2
     dest: /etc/vim/vimrc.local
     mode: 0644
@@ -104,7 +106,7 @@
 # Create airline.vim file
 #
 - name: TEMPLATE | Create airline.vim file
-  template:
+  ansible.builtin.template:
     src: etc/vim/airline.vim.j2
     dest: /etc/vim/airline.vim
     mode: 0644
@@ -119,7 +121,7 @@
 # Create pathogen.vim file
 #
 - name: TEMPLATE | Create pathogen.vim file
-  template:
+  ansible.builtin.template:
     src: etc/vim/pathogen.vim.j2
     dest: /etc/vim/pathogen.vim
     mode: 0644
@@ -134,7 +136,7 @@
 # Ensure that bundle directory exists
 #
 - name: "CREATE_DIR | Ensure {{ pathogen_dir }}/bundle directory exists"
-  file:
+  ansible.builtin.file:
     path: "{{ pathogen_dir }}/bundle"
     state: directory
     recurse: no
@@ -149,7 +151,7 @@
 # Configuring GIT
 #
 - name: CONFIG_GIT | Git setup http proxy
-  git_config:
+  ansible.builtin.git_config:
     name: http.proxy
     value: "{{ proxy_env.http_proxy }}"
     scope: global
@@ -165,7 +167,7 @@
 # Git setup https proxy
 #
 - name: CONFIG_GIT | Git setup https proxy
-  git_config:
+  ansible.builtin.git_config:
     name: https.proxy
     value: "{{ proxy_env.https_proxy }}"
     scope: global
@@ -181,7 +183,7 @@
 # Deploying plugins from Git
 #
 - name: INSTALL_PLUGINS | Deploying vim plugins from Git
-  git:
+  ansible.builtin.git:
     dest: "{{ pathogen_dir }}/bundle/{{ item.name }}"
     repo: "{{ item.url }}"
     clone: yes
@@ -200,7 +202,7 @@
 # Create individual plugin configuration file
 #
 - name: TEMPLATE | Create individual plugin configuration file
-  template:
+  ansible.builtin.template:
     src: "etc/vim/{{ item.name }}.vim.j2"
     dest: /etc/vim/{{ item.name }}.vim
     mode: 0644
@@ -219,7 +221,7 @@
 # Deploying custom plugins from Git
 #
 - name: INSTALL_PLUGINS | Deploying vim cumtom plugins from Git
-  git:
+  ansible.builtin.git:
     dest: "{{ pathogen_dir }}/bundle/{{ item.name }}"
     repo: "{{ item.url }}"
     clone: yes
@@ -238,7 +240,7 @@
 # Create individual custom plugin configuration file
 #
 - name: TEMPLATE | Create individual custom plugin configuration file
-  template:
+  ansible.builtin.template:
     src: "{{ item.config_file }}"
     dest: /etc/vim/{{ item.name }}.vim
     mode: 0644
