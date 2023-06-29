@@ -1,4 +1,4 @@
-# file: roles/vim/molecule/default/prepare.yml
+# file: roles/inithost/molecule/default/prepare.yml
 # author: Antoni Pàmies <toni@arboli.net>
 #
 ---
@@ -17,7 +17,28 @@
       changed_when: false
       failed_when: false
       register: check_python
-
+    #
+    # Change repos on Centos
+    #
+    - name: Change Repos
+      ansible.builtin.raw: >
+        if [ -f /etc/redhat-release ]; then
+          grep "elease 6" /etc/redhat-release
+          if [ $? -eq 0 ]; then
+            ( sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-Base.* &&
+              sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-Base.* ) || true
+          else
+            grep "elease 8" /etc/redhat-release
+            if [ $? -eq 0 ]; then
+              ( sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-Linux-* &&
+                sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-Linux-* ) || true
+            fi
+          fi
+        fi
+      failed_when: false
+    #
+    # Install Python
+    #
     - name: Install Python
       ansible.builtin.raw: >
         (test -e /usr/bin/apt-get && (apt-get -y update && apt-get install -y python3-minimal python3-apt)) ||

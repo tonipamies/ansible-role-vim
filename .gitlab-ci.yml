@@ -46,6 +46,15 @@ molecule_debian_bullseye:
   script:
     - *molecule_test
 
+molecule_debian_bookworm:
+  stage: test
+  variables:
+    <<: *global-variables
+    MOLECULE_DISTRO: debian:bookworm
+    MOLECULE_INSTANCE_NAME: Debian-Bookworm
+  script:
+    - *molecule_test
+
 molecule_ubuntu_bionic:
   stage: test
   variables:
@@ -64,12 +73,12 @@ molecule_ubuntu_focal:
   script:
     - *molecule_test
 
-molecule_ubuntu_groovy:
+molecule_ubuntu_jammy:
   stage: test
   variables:
     <<: *global-variables
-    MOLECULE_DISTRO: ubuntu:groovy
-    MOLECULE_INSTANCE_NAME: Ubuntu-Groovy
+    MOLECULE_DISTRO: ubuntu:jammy
+    MOLECULE_INSTANCE_NAME: Ubuntu-Jammy
   script:
     - *molecule_test
 
@@ -106,5 +115,41 @@ molecule_fedora_34:
     <<: *global-variables
     MOLECULE_DISTRO: fedora:34
     MOLECULE_INSTANCE_NAME: Fedora-34
+  script:
+    - *molecule_test
+
+molecule_fedora_35:
+  stage: test
+  variables:
+    <<: *global-variables
+    MOLECULE_DISTRO: fedora:35
+    MOLECULE_INSTANCE_NAME: Fedora-35
+  script:
+    - *molecule_test
+
+molecule_fedora_36:
+  stage: test
+  variables:
+    <<: *global-variables
+    MOLECULE_DISTRO: fedora:36
+    MOLECULE_INSTANCE_NAME: Fedora-36
+  script:
+    - *molecule_test
+
+molecule_fedora_37:
+  stage: test
+  variables:
+    <<: *global-variables
+    MOLECULE_DISTRO: fedora:37
+    MOLECULE_INSTANCE_NAME: Fedora-37
+  script:
+    - *molecule_test
+
+molecule_fedora_38:
+  stage: test
+  variables:
+    <<: *global-variables
+    MOLECULE_DISTRO: fedora:38
+    MOLECULE_INSTANCE_NAME: Fedora-38
   script:
     - *molecule_test

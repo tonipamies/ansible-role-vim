@@ -64,13 +64,18 @@ Refer to the [change log](CHANGELOG.md) for changes in each release.
 - CentOS 8
 - Debian 10 Buster
 - Debian 11 Bullseye
+- Debian 12 Bookworm 
 - Fedora 31
 - Fedora 32
 - Fedora 33
 - Fedora 34
 - Fedora 35
+- Fedora 36
+- Fedora 37
+- Fedora 38
 - Ubuntu 18.04 Bionic
 - Ubuntu 20.04 Focal
+- Ubuntu 22.04 Jammy
 
 ## Requirements
 

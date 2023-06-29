@@ -78,16 +78,20 @@
           - "33"
           - "34"
           - "35"
+          - "36"
+          - "37"
+          - "38"
       - name: "Ubuntu"
         versions:
           - "18"
           - "20"
           - "21"
+          - "22"
       - name: "Debian"
         versions:
-          - "8"
           - "10"
           - "11"
+          - "12"
       - name: "CentOS"
         versions:
           - "8"

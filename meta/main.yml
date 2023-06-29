@@ -17,6 +17,7 @@ galaxy_info:
       versions:
         - buster
         - bullseye
+        - bookworm
     - name: Fedora
       versions:
         - 31
@@ -24,10 +25,14 @@ galaxy_info:
         - 33
         - 34
         - 35
+        - 36
+        - 37
+        - 38
     - name: Ubuntu
       versions:
         - bionic
         - focal
+        - jammy
   galaxy_tags:
     - vim
     - system

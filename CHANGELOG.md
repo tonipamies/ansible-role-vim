@@ -27,6 +27,16 @@ This file contains al notable changes to the VIM Ansible role.
 
 This file adheres to the guidelines of <http://keepachangelog.com/>. Versioning follows [Semantic Versioning](http://semver.org/).
 
+## 1.0.7 - 2023-06-29
+
+### Changed on Linux Distributions
+
+- Added Fedora 36
+- Added Fedora 37
+- Added Fedora 38
+- Added Debian 12 Bookworm
+- Added Ubuntu 22.04 Jammy Jellyfish
+
 ## 1.0.6 - 2022-01-28
 
 ### Changed on Linux Distributions

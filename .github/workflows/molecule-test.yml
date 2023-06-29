@@ -19,10 +19,14 @@ jobs:
             instance: 'Debian-Buster'
           - name: 'debian:bullseye'
             instance: 'Debian-Bullseye'
+          - name: 'debian:bookworm'
+            instance: 'Debian-Bookworm'
           - name: 'ubuntu:bionic'
             instance: 'Ubuntu-Bionic'
           - name: 'ubuntu:focal'
             instance: 'Ubuntu-Focal'
+          - name: 'ubuntu:jammy'
+            instance: 'Ubuntu-Jammy'
           - name: 'fedora:31'
             instance: 'Fedora-31'
           - name: 'fedora:32'
@@ -33,6 +37,12 @@ jobs:
             instance: 'Fedora-34'
           - name: 'fedora:35'
             instance: 'Fedora-35'
+          - name: 'fedora:36'
+            instance: 'Fedora-36'
+          - name: 'fedora:37'
+            instance: 'Fedora-37'
+          - name: 'fedora:38'
+            instance: 'Fedora-38'
     env:
       ROLE_NAME: vim
       MOLECULE_DEBUG: false
