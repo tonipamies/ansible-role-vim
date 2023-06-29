@@ -64,7 +64,7 @@ Refer to the [change log](CHANGELOG.md) for changes in each release.
 - CentOS 8
 - Debian 10 Buster
 - Debian 11 Bullseye
-- Debian 12 Bookworm 
+- Debian 12 Bookworm
 - Fedora 31
 - Fedora 32
 - Fedora 33

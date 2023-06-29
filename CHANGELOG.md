@@ -3,8 +3,10 @@
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
 - [Change log](#change-log)
-  - [1.0.6 - 2022-01-28](#106---2022-01-28)
+  - [1.0.7 - 2023-06-29](#107---2023-06-29)
     - [Changed on Linux Distributions](#changed-on-linux-distributions)
+  - [1.0.6 - 2022-01-28](#106---2022-01-28)
+    - [Changed on Linux Distributions](#changed-on-linux-distributions-1)
     - [Added](#added)
   - [1.0.5 - 2021-03-17](#105---2021-03-17)
     - [Changed](#changed)
