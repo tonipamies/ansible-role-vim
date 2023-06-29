@@ -2,7 +2,7 @@
 # See https://pre-commit.com/hooks.html for more hooks
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.1.0
+    rev: v4.4.0
     hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer
@@ -12,7 +12,7 @@ repos:
       - id: detect-private-key
 
   - repo: https://github.com/ansible/ansible-lint.git
-    rev: v5.3.2
+    rev: v6.17.2
     hooks:
       - id: ansible-lint
         always_run: false
@@ -22,18 +22,13 @@ repos:
         entry: env ANSIBLE_LIBRARY=./plugins/modules ANSIBLE_MODULE_UTILS=./plugins/module_utils ansible-lint --force-color
 
   - repo: https://github.com/adrienverge/yamllint.git
-    rev: v1.26.3
+    rev: v1.32.0
     hooks:
       - id: yamllint
         files: \.(yaml|yml)$
 
-  - repo: https://gitlab.com/pycqa/flake8
-    rev: 3.9.2
-    hooks:
-      - id: flake8
-
   - repo: https://github.com/thlorenz/doctoc
-    rev: v2.1.0
+    rev: v2.2.0
     hooks:
       - id: doctoc
         args: [ '--github' ]
@@ -45,7 +40,7 @@ repos:
         args: ["https://gitlab.com"]
 
   - repo: https://github.com/robertdebock/pre-commit
-    rev: v1.4.5
+    rev: v1.5.2
     hooks:
       - id: ansible_role_find_unused_variable
       - id: ansible_role_find_empty_files
